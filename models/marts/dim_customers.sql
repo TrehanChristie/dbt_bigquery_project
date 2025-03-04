@@ -1,5 +1,5 @@
 SELECT 
-    customerid,
+    customer_id,
     first_name,
     last_name,
     street,

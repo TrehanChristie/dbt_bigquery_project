@@ -5,7 +5,7 @@ SELECT
     p.product_id,
     d.department_id,
     oi.quantity,
-    oi.price * oi.quantity AS total_sales_value,
+    oi.product_price * oi.quantity AS total_sales_value,
     o.order_date
 FROM {{ ref('stg_order_items') }} oi
 JOIN {{ ref('stg_orders') }} o ON oi.order_id = o.order_id

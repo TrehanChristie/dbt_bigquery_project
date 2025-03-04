@@ -1,6 +1,6 @@
 SELECT 
     order_id,
-    customerid,
+    customer_id,
     order_status,
     order_date
 FROM {{ ref('stg_orders') }}
