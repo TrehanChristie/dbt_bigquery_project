@@ -2,7 +2,7 @@ with stg_customers as (
     SELECT * FROM {{ source("treytrey_de_project","customers") }}
 )
 select 
-    cast(customer_id as STRING) as customerid,
+    customer_id as customer_id,
     customer_fname as first_name,
     customer_lname as last_name,
     customer_street as street,

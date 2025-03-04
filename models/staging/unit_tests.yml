@@ -1,0 +1,127 @@
+unit_tests:
+  - name: test_check_department_id_restructure
+    description: "Check case/when logic to restructure department id within stg_product_categories"
+    model: stg_product_categories
+    given:
+      - input: source("treytrey_de_project", "categories") 
+        rows:
+          - { category_id: 1, category_department_id: 2, category_name: "Football" }
+          - { category_id: 2, category_department_id: 2, category_name: "Soccer" }
+          - { category_id: 3, category_department_id: 2, category_name: "Baseball & Softball" }
+          - { category_id: 4, category_department_id: 2, category_name: "Basketball" }
+          - { category_id: 5, category_department_id: 2, category_name: "Lacrosse" }
+          - { category_id: 6, category_department_id: 2, category_name: "Tennis & Racquet" }
+          - { category_id: 7, category_department_id: 2, category_name: "Hockey" }
+          - { category_id: 8, category_department_id: 2, category_name: "More Sports" }
+          - { category_id: 9, category_department_id: 3, category_name: "Cardio Equipment" }
+          - { category_id: 10, category_department_id: 3, category_name: "Strength Training" }
+          - { category_id: 11, category_department_id: 3, category_name: "Fitness Accessories" }
+          - { category_id: 12, category_department_id: 3, category_name: "Boxing & MMA" }
+          - { category_id: 13, category_department_id: 3, category_name: "Electronics" }
+          - { category_id: 14, category_department_id: 3, category_name: "Yoga & Pilates" }
+          - { category_id: 15, category_department_id: 3, category_name: "Training by Sport" }
+          - { category_id: 16, category_department_id: 3, category_name: "As Seen on TV!" }
+          - { category_id: 17, category_department_id: 4, category_name: "Cleats" }
+          - { category_id: 18, category_department_id: 4, category_name: "Men's Footwear" }
+          - { category_id: 19, category_department_id: 4, category_name: "Women's Footwear" }
+          - { category_id: 20, category_department_id: 4, category_name: "Kids' Footwear" }
+          - { category_id: 21, category_department_id: 4, category_name: "Featured Shops" }
+          - { category_id: 22, category_department_id: 4, category_name: "Accessories" }
+          - { category_id: 23, category_department_id: 5, category_name: "Men's Apparel" }
+          - { category_id: 24, category_department_id: 5, category_name: "Women's Apparel" }
+          - { category_id: 25, category_department_id: 5, category_name: "Boys' Apparel" }
+          - { category_id: 26, category_department_id: 5, category_name: "Girls' Apparel" }
+          - { category_id: 27, category_department_id: 5, category_name: "Accessories" }
+          - { category_id: 28, category_department_id: 5, category_name: "Top Brands" }
+          - { category_id: 29, category_department_id: 5, category_name: "Shop By Sport" }
+          - { category_id: 30, category_department_id: 6, category_name: "Men's Golf Clubs" }
+          - { category_id: 31, category_department_id: 6, category_name: "Women's Golf Clubs" }
+          - { category_id: 32, category_department_id: 6, category_name: "Golf Apparel" }
+          - { category_id: 33, category_department_id: 6, category_name: "Golf Shoes" }
+          - { category_id: 34, category_department_id: 6, category_name: "Golf Bags & Carts" }
+          - { category_id: 35, category_department_id: 6, category_name: "Golf Gloves" }
+          - { category_id: 36, category_department_id: 6, category_name: "Golf Balls" }
+          - { category_id: 37, category_department_id: 6, category_name: "Electronics" }
+          - { category_id: 38, category_department_id: 6, category_name: "Kids' Golf Clubs" }
+          - { category_id: 39, category_department_id: 6, category_name: "Team Shop" }
+          - { category_id: 40, category_department_id: 6, category_name: "Accessories" }
+          - { category_id: 41, category_department_id: 6, category_name: "Trade-In" }
+          - { category_id: 42, category_department_id: 7, category_name: "Bike & Skate Shop" }
+          - { category_id: 43, category_department_id: 7, category_name: "Camping & Hiking" }
+          - { category_id: 44, category_department_id: 7, category_name: "Hunting & Shooting" }
+          - { category_id: 45, category_department_id: 7, category_name: "Fishing" }
+          - { category_id: 46, category_department_id: 7, category_name: "Indoor/Outdoor Games" }
+          - { category_id: 47, category_department_id: 7, category_name: "Boating" }
+          - { category_id: 48, category_department_id: 7, category_name: "Water Sports" }
+          - { category_id: 49, category_department_id: 8, category_name: "MLB" }
+          - { category_id: 50, category_department_id: 8, category_name: "NFL" }
+          - { category_id: 51, category_department_id: 8, category_name: "NHL" }
+          - { category_id: 52, category_department_id: 8, category_name: "NBA" }
+          - { category_id: 53, category_department_id: 8, category_name: "NCAA" }
+          - { category_id: 54, category_department_id: 8, category_name: "MLS" }
+          - { category_id: 55, category_department_id: 8, category_name: "International Soccer" }
+          - { category_id: 56, category_department_id: 8, category_name: "World Cup Shop" }
+          - { category_id: 57, category_department_id: 8, category_name: "MLB Players" }
+          - { category_id: 58, category_department_id: 8, category_name: "NFL Players" }
+          
+
+    expect:
+      rows:
+        - { product_category_id: 1, department_id: 1, product_category_name: "Football" }
+        - { product_category_id: 2, department_id: 1, product_category_name: "Soccer" }
+        - { product_category_id: 3, department_id: 1, product_category_name: "Baseball & Softball" }
+        - { product_category_id: 4, department_id: 1, product_category_name: "Basketball" }
+        - { product_category_id: 5, department_id: 1, product_category_name: "Lacrosse" }
+        - { product_category_id: 6, department_id: 1, product_category_name: "Tennis & Racquet" }
+        - { product_category_id: 7, department_id: 1, product_category_name: "Hockey" }
+        - { product_category_id: 8, department_id: 1, product_category_name: "More Sports" }
+        - { product_category_id: 9, department_id: 2, product_category_name: "Cardio Equipment" }
+        - { product_category_id: 10, department_id: 2, product_category_name: "Strength Training" }
+        - { product_category_id: 11, department_id: 2, product_category_name: "Fitness Accessories" }
+        - { product_category_id: 12, department_id: 2, product_category_name: "Boxing & MMA" }
+        - { product_category_id: 13, department_id: 2, product_category_name: "Electronics" }
+        - { product_category_id: 14, department_id: 2, product_category_name: "Yoga & Pilates" }
+        - { product_category_id: 15, department_id: 2, product_category_name: "Training by Sport" }
+        - { product_category_id: 16, department_id: 2, product_category_name: "As Seen on TV!" }
+        - { product_category_id: 17, department_id: 3, product_category_name: "Cleats" }
+        - { product_category_id: 18, department_id: 3, product_category_name: "Men's Footwear" }
+        - { product_category_id: 19, department_id: 3, product_category_name: "Women's Footwear" }
+        - { product_category_id: 20, department_id: 3, product_category_name: "Kids' Footwear" }
+        - { product_category_id: 21, department_id: 3, product_category_name: "Featured Shops" }
+        - { product_category_id: 22, department_id: 3, product_category_name: "Accessories" }
+        - { product_category_id: 23, department_id: 4, product_category_name: "Men's Apparel" }
+        - { product_category_id: 24, department_id: 4, product_category_name: "Women's Apparel" }
+        - { product_category_id: 25, department_id: 4, product_category_name: "Boys' Apparel" }
+        - { product_category_id: 26, department_id: 4, product_category_name: "Girls' Apparel" }
+        - { product_category_id: 27, department_id: 4, product_category_name: "Accessories" }
+        - { product_category_id: 28, department_id: 4, product_category_name: "Top Brands" }
+        - { product_category_id: 29, department_id: 4, product_category_name: "Shop By Sport" }
+        - { product_category_id: 30, department_id: 5, product_category_name: "Men's Golf Clubs" }
+        - { product_category_id: 31, department_id: 5, product_category_name: "Women's Golf Clubs" }
+        - { product_category_id: 32, department_id: 5, product_category_name: "Golf Apparel" }
+        - { product_category_id: 33, department_id: 5, product_category_name: "Golf Shoes" }
+        - { product_category_id: 34, department_id: 5, product_category_name: "Golf Bags & Carts" }
+        - { product_category_id: 35, department_id: 5, product_category_name: "Golf Gloves" }
+        - { product_category_id: 36, department_id: 5, product_category_name: "Golf Balls" }
+        - { product_category_id: 37, department_id: 5, product_category_name: "Electronics" }
+        - { product_category_id: 38, department_id: 5, product_category_name: "Kids' Golf Clubs" }
+        - { product_category_id: 39, department_id: 5, product_category_name: "Team Shop" }
+        - { product_category_id: 40, department_id: 5, product_category_name: "Accessories" }
+        - { product_category_id: 41, department_id: 5, product_category_name: "Trade-In" }
+        - { product_category_id: 42, department_id: 6, product_category_name: "Bike & Skate Shop" }
+        - { product_category_id: 43, department_id: 6, product_category_name: "Camping & Hiking" }
+        - { product_category_id: 44, department_id: 6, product_category_name: "Hunting & Shooting" }
+        - { product_category_id: 45, department_id: 6, product_category_name: "Fishing" }
+        - { product_category_id: 46, department_id: 6, product_category_name: "Indoor/Outdoor Games" }
+        - { product_category_id: 47, department_id: 6, product_category_name: "Boating" }
+        - { product_category_id: 48, department_id: 6, product_category_name: "Water Sports" }
+        - { product_category_id: 49, department_id: 7, product_category_name: "MLB" }
+        - { product_category_id: 50, department_id: 7, product_category_name: "NFL" }
+        - { product_category_id: 51, department_id: 7, product_category_name: "NHL" }
+        - { product_category_id: 52, department_id: 7, product_category_name: "NBA" }
+        - { product_category_id: 53, department_id: 7, product_category_name: "NCAA" }
+        - { product_category_id: 54, department_id: 7, product_category_name: "MLS" }
+        - { product_category_id: 55, department_id: 7, product_category_name: "International Soccer" }
+        - { product_category_id: 56, department_id: 7, product_category_name: "World Cup Shop" }
+        - { product_category_id: 57, department_id: 7, product_category_name: "MLB Players" }
+        - { product_category_id: 58, department_id: 7, product_category_name: "NFL Players" }
