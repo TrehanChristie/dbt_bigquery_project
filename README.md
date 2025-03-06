@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/af6b611c-38ce-4b89-88fa-93ee0cdaf1a4)
+
+
 # dbt BigQuery ELT Data Pipeline
 
 ## Project Overview
