@@ -66,13 +66,13 @@ Each table has unique constraints and validation rules defined for dbt testing.
 
 ### Dimensional Models
 
-`dim_customers.sql`: Contains customer-related attributes, providing a unified view of customer data.
+`dim_customer.sql`: Contains customer-related attributes, providing a unified view of customer data.
 
-`dim_departments.sql`: Stores department-related information, enabling structured department analysis.
+`dim_department.sql`: Stores department-related information, enabling structured department analysis.
 
-`dim_orders.sql`: Represents processed order data, aggregating customer transactions.
+`dim_date.sql`: Contains dates rangin from minimum order date to maximum orderdate.
 
-`dim_products.sql`: Provides detailed product information, ensuring accurate product tracking.
+`dim_product.sql`: Provides detailed product information, ensuring accurate product tracking.
 
 ### Fact Table
 
