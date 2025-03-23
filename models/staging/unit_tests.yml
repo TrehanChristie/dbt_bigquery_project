@@ -63,8 +63,6 @@ unit_tests:
           - { category_id: 56, category_department_id: 8, category_name: "World Cup Shop" }
           - { category_id: 57, category_department_id: 8, category_name: "MLB Players" }
           - { category_id: 58, category_department_id: 8, category_name: "NFL Players" }
-          
-
     expect:
       rows:
         - { product_category_id: 1, department_id: 1, product_category_name: "Football" }

@@ -23,15 +23,16 @@ fact_sales as (
             dbt_utils.generate_surrogate_key(
                 ['o.order_id','oi.order_item_id','oi.product_id','o.customer_id','o.order_date']
             ) 
-        }} as fact_sales_key
-        ,{{ dbt_utils.generate_surrogate_key(['o.order_id','oi.order_item_id']) }} as order_key
-        ,{{ dbt_utils.generate_surrogate_key(['o.order_date']) }} as date_key
-        ,{{ dbt_utils.generate_surrogate_key(['oi.product_id']) }} as product_key
-        ,{{ dbt_utils.generate_surrogate_key(['o.customer_id']) }} as customer_key
-        ,o.order_status
-        ,oi.quantity as item_quantity
-        ,oi.subtotal as item_total
-        ,oi.product_price    
+        }} as fact_sales_key,
+        {{ dbt_utils.generate_surrogate_key(['o.order_id']) }} as order_key,
+        {{ dbt_utils.generate_surrogate_key(['o.order_id','oi.order_item_id']) }} as order_item_key,
+        {{ dbt_utils.generate_surrogate_key(['o.order_date']) }} as date_key,
+        {{ dbt_utils.generate_surrogate_key(['oi.product_id']) }} as product_key,
+        {{ dbt_utils.generate_surrogate_key(['o.customer_id']) }} as customer_key,
+        o.order_date,
+        o.order_status,
+        oi.quantity as item_quantity,
+        oi.subtotal as item_total,
     from 
         stg_orders as o
     join 
@@ -42,12 +43,13 @@ fact_sales as (
 SELECT 
     fact_sales_key
     ,order_key
+    ,order_item_key
     ,date_key
     ,product_key
     ,customer_key
+    ,order_date
     ,order_status
     ,item_quantity
     ,item_total
-    ,product_price   
 FROM 
     fact_sales

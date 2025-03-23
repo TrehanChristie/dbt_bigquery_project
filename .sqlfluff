@@ -1,0 +1,16 @@
+[sqlfluff]
+dialect = tsql
+templater = dbt
+exclude_rules = LT08,LT12
+format = "human"
+
+[sqlfluff.templater.dbt]
+project_dir = .
+profiles_dir = ~/.dbt
+
+[sqlfluff.layout]
+indent_unit = space
+tab_space_size = 4
+
+[sqlfluff.rules]
+max_line_length = 120   
