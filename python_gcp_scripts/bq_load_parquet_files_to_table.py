@@ -42,9 +42,6 @@ for blob in blobs:
     blob_uri = f"gs://{bucket_id}/{blob.name}"
     blob_name = blob_uri.split('/')[-1]
     bq_table_name = blob_name
-
-    # extract schema for current blob
-    schema_format = get_schema(schemas_file, blob_name)
     
     print(f"blob_path: {blob_uri}")
     print(f"blob_name: {blob_name}")
