@@ -19,23 +19,6 @@ gcs_client = storage.Client()
 bucket_id = os.environ.get("GCS_BUCKET_ID")
 bucket = gcs_client.get_bucket(bucket_id)
 
-# Import schemas file
-schemas_file = os.environ.get("SCHEMA_FILE_PATH")
-
-schemas_upload_test = json.load(open(schemas_file))
-
-def get_schema(schemas_file, blob_name):
-    """Returns a list of bigquery.SchemaField objects for a given table schema."""
-    schemas = json.load(open(schemas_file))
-    ds_schema = sorted(schemas[blob_name], key=lambda col: col['column_position'])
-    
-    # Convert schema to list of bigquery.SchemaField objects
-    schema_fields = [
-        bigquery.SchemaField(col['column_name'], col['data_type'])
-        for col in ds_schema
-    ]
-    return schema_fields
-
 def delete_table_if_exists(table_id):
     """Deletes a BigQuery table if it exists."""
     try:
